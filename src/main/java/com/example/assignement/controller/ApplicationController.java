@@ -29,29 +29,36 @@ public class ApplicationController {
 	@Autowired
 	private ApplicationService applicationService;
 	
+	
+	/**
+	 * Get all application by job iD 
+	 */
 	@RequestMapping(value = "/getAllApplicationByJobId/{parameter}", produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.GET)
 	@ResponseBody
 	public ResponseEntity<List<Application>> getAllApplicationByJobId(@PathVariable("parameter") final String parameter) {
 
-		LOGGER.trace("Entering into method getAllApplicationByJobId");
+		LOGGER.info("Entering into method getAllApplicationByJobId");
 		List<Application> applicationList = applicationService.getAllApplicationByJobId(parameter);
-		LOGGER.trace("Exiting from method getAllApplicationByJobId");
+		LOGGER.info("Exiting from method getAllApplicationByJobId");
 		return new ResponseEntity<List<Application>>(applicationList, HttpStatus.OK);
 	}
 	
+	/**
+	 * Get User Application details  
+	 */
 	@RequestMapping(value = "/getApplicationDetails/{param1}/{param2}", produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.GET)
 	@ResponseBody
 	public ResponseEntity<Application> getUserApplicationDetails(@PathVariable("param1") final String jobId,@PathVariable("param2") final String emailId) {
 
-		LOGGER.trace("Entering into method getUserApplicationDetails");
+		LOGGER.info("Entering into method getUserApplicationDetails");
 		Application applicationList = applicationService.getUserApplicationDetails(jobId,emailId);
-		LOGGER.trace("Exiting from method getUserApplicationDetails");
+		LOGGER.info("Exiting from method getUserApplicationDetails");
 		return new ResponseEntity<Application>(applicationList, HttpStatus.OK);
 	}
 	
 	
 	/**
-	 * Add description
+	 * apply for job offer and create application 
 	 * @throws Exception 
 	 */
 	@RequestMapping(value = "/createApplication", produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.POST)

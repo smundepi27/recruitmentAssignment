@@ -29,31 +29,34 @@ public class OfferController {
 	private OfferService offerService;
 
 	/**
-	 * Add description here
+	 * To get job offer detail by ID
 	 */
 	@RequestMapping(value = "/getJobOfferById/{parameter}", produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.GET)
 	@ResponseBody
 	public ResponseEntity<Offer> getJobOfferById(@PathVariable("parameter") final String parameter) {
 
-		LOGGER.trace("Entering into method getJobOfferById");
+		LOGGER.info("Entering into method getJobOfferById");
 		Offer offer = offerService.getJobOfferById(parameter);
-		LOGGER.trace("Exiting from method getJobOfferById");
+		LOGGER.info("Exiting from method getJobOfferById");
 		return new ResponseEntity<Offer>(offer, HttpStatus.OK);
 	}
 	
+	/**
+	 * To get all job offer
+	 */
 	@RequestMapping(value = "/getAllJobOffer", produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.GET)
 	@ResponseBody
 	public ResponseEntity<List<Offer>> getAllJobOffer()  {
 
-		LOGGER.trace("Entering into method getJobOfferById");
+		LOGGER.info("Entering into method getJobOfferById");
 		List<Offer> offer = offerService.getAllJobOffer();
-		LOGGER.trace("Exiting from method getJobOfferById");
+		LOGGER.info("Exiting from method getJobOfferById");
 
 		return new ResponseEntity<List<Offer>>(offer, HttpStatus.OK);
 	}
 
 	/**
-	 * Add description
+	 * To create job offer
 	 */
 	@RequestMapping(value = "/createOffer", produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.POST)
 	public ResponseEntity<String> createJobOffer(@RequestBody final Offer offerDetails) {
